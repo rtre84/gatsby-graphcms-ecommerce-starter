@@ -15,17 +15,22 @@ function ProductPage({
   location,
 }) {
   const { variantId } = queryString.parse(location.search);
-  const { variants } = product.printfulProduct;
-  const [firstVariant] = variants;
+
+  let variants = [];
+  let firstVariant = { id: '' };
+  let activeVariant = null;
+  // const { variants }  = product.printfulProduct;
+
+  // const [firstVariant] = variants;
   const [variantQuantity, setVariantQuantity] = useState(1);
   const [activeVariantId, setActiveVariantId] = useState(
     variantId || firstVariant.id
   );
   const { addItem } = useCart();
 
-  const activeVariant = variants.find(
-    variant => variant.id === activeVariantId
-  );
+  // const activeVariant = variants.find(
+  //   variant => variant.id === activeVariantId
+  // );
 
   useEffect(() => {
     navigate(`?variantId=${activeVariantId}`, { replace: true });
